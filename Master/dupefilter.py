@@ -1,5 +1,5 @@
-from .Until.tool import settings, redis_server
-from .Until.bloomfilter import HashMap, BloomFilter
+from Master.Until.tool import redis_server
+from Master.Until.bloomfilter import BloomFilter
 import time
 
 
