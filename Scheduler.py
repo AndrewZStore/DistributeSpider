@@ -1,5 +1,5 @@
-from Master.Until.tool import redis_server, settings
-from Master.dupefilter import DupeFilter
+from .Until.tool import redis_server, settings
+from .dupefilter import DupeFilter
 import time
 
 # TODO 从redis数据库获取各爬虫节点的系统运行状况

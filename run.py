@@ -1,5 +1,5 @@
-from Master.Scheduler import MasterScheduler
-from Master.Until.tool import settings
+from .Scheduler import MasterScheduler
+from .Until.tool import settings
 
 
 m = MasterScheduler.from_settings(settings)
