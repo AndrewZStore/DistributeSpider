@@ -16,10 +16,11 @@ class MasterScheduler(object):
         return cls(request_queue=settings.get('MASTER_REQUEST_QUEUE'))
 
     def _init_request_queue(self):
+        print('init requests queue')
         start_urls = ['https://weibo.com/1730336902/info']
         self.server = redis_server()
         for url in start_urls:
-            self.server.zadd(self.rq, -100, url)
+            self.server.zadd(self.rq, {url: -100})
         self.dupefilter.start_dupefilter()
 
 

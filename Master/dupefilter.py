@@ -18,6 +18,7 @@ class DupeFilter(object):
                    dupefilter_queue=settings.get('MASTER_DEPUFILTER_QUEUE'))
 
     def get_request(self):
+        print('从新请求队列拿出请求')
         with self.server.pipeline(transaction=False) as pipe:
             pipe.zrange(self.nrq, 0, 0, withscores=True).zremrangebyrank(self.nrq, 0, 0)
             results, count = pipe.execute()
@@ -32,7 +33,7 @@ class DupeFilter(object):
     def filter(self):
         req, score = self.get_request()
         if req and not self.bf.exists(req):
-            self.server.zadd(self.rq, score, req)
+            self.server.zadd(self.rq, {req: score})
             self.bf.insert(req)
 
     def __len__(self):
